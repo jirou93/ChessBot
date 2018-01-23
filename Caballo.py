@@ -18,7 +18,17 @@ class Caballo:
         else :
             self.position = x
     
-    
+    # return positions in tablero (1x128)
     def posibleMoves(self):
         positions = []
+        positions.append(self.position + 31)
+        positions.append(self.position + 33)
+        positions.append(self.position + 14)
+        positions.append(self.position + 18)
+        positions.append(self.position - 14)
+        positions.append(self.position - 18)
+        positions.append(self.position - 31)
+        positions.append(self.position - 33)
+        return positions
+        
         
