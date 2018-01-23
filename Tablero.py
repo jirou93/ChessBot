@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Editor de Spyder
+Pau Castro Sampol
 
-Este es un archivo temporal
+23/01/2018
 """
 import numpy as np
 
@@ -10,7 +10,7 @@ import numpy as np
 class Tablero:
     
     def __init__(self):
-        self.tab_posiciones = np.empty((1,128)) #tablero donde veremos los movimientos legales
+        self.tab_posiciones = np.zeros((128)) #tablero donde veremos los movimientos legales
         self.tab_piezas = self.iniciarTablero()
         
 
