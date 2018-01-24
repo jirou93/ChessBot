@@ -9,11 +9,13 @@ class Alfil:
     
     #t = 0 --> tablero (1x128)
     #t = 1 --> tablero (8x8)
-    #x--> row in the tablero (0-7)
-    #y--> column in the tablero (0-7)
+    #if t== 0 x = posicion
+    #else 
+    #   x--> row in the tablero (0-7)
+    #   y--> column in the tablero (0-7)
     def __init__(self, t, x, y):
         self.t = t
-        if t  == 0:
+        if t  == 0 :
             self.position = x*16 + y
         else :
             self.position = x
