@@ -25,7 +25,8 @@ class Torre:
     # x --> position of the piece in format (1x128)
     def movePiece(self, x):
         self.position = x
-        self.resetMoves()   
+        self.resetMoves()
+        self.checkAvaliableMoves(1)
     
     #piezas --> position of all pieces in format (1x128)
     def setPiezas(self, piezas):
@@ -58,4 +59,7 @@ class Torre:
             self.HA = 0
         if self.VB and self.position - (x*16) in self.piezas :
             self.VB = 0
-        
+    
+    #Chexk if the position 'x' it's inside the Board
+    def insideTab(self, x):
+        return (x & 0x88) == 0 

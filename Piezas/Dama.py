@@ -4,6 +4,7 @@ Created on Wed Jan 24 10:08:43 2018
 
 @author: p.castro.sampol
 """
+import UtilFunctions 
 
 class Dama:
     
@@ -12,8 +13,8 @@ class Dama:
     def __init__(self, x, piezas):
         self.piezas = piezas
         self.resetMoves()
-        self.moves = [] #Represents the posibles moves of the piece in that position
         self.position = x
+        self.posibleMoves()
     
     # reset all booleans of moves to 1
     def resetMoves(self) :
@@ -30,7 +31,7 @@ class Dama:
     def movePiece(self, x):
         self.position = x
         self.resetMoves()
-        self.posibleMoves(1)
+        self.checkAvaliableMoves(1)
     
     #piezas --> position of all pieces in format (1x128)
     def setPiezas(self, piezas):
@@ -42,21 +43,21 @@ class Dama:
         x = 1
         while x < 8 :
             self.checkAvaliableMoves(x)
-            if self.HB: 
+            if self.HB and self.insideTab(self.position + x) : 
                 positions.append(self.position + x)
-            if self.VB:
+            if self.VB and self.insideTab(self.position + (x*16)) :
                 positions.append(self.position + (x*16))
-            if self.DD:
+            if self.DD and self.insideTab(self.position + (x*16) + x) :
                 positions.append(self.position + (x*16) + x)
-            if self.DC:
+            if self.DC and self.insideTab(self.position + (x*16) - x) :
                 positions.append(self.position + (x*16) - x)
-            if self.HA:
+            if self.HA and self.insideTab(self.position - x) :
                 positions.append(self.position - x)
-            if self.VB:
+            if self.VB and self.insideTab(self.position - (x*16)) :
                 positions.append(self.position - (x*16))
-            if self.DB:
+            if self.DB and self.insideTab(self.position - (x*16) + x) :
                 positions.append(self.position - (x*16) + x)
-            if self.DA:
+            if self.DA and self.insideTab(self.position - (x*16) - x) :
                 positions.append(self.position - (x*16) - x) 
             x = x + 1
         self.moves = positions
@@ -79,3 +80,7 @@ class Dama:
             self.DB = 0
         if self.DA and self.position - (x*16) - x in self.piezas :
             self.DA = 0
+            
+    #Chexk if the position 'x' it's inside the Board
+    def insideTab(self, x):
+        return (x & 0x88) == 0 

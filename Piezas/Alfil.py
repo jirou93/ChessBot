@@ -7,33 +7,59 @@ Created on Tue Jan 23 18:43:37 2018
 
 class Alfil:
     
-    #t = 0 --> tablero (1x128)
-    #t = 1 --> tablero (8x8)
-    #if t== 0 x = posicion
-    #else 
-    #   x--> row in the tablero (0-7)
-    #   y--> column in the tablero (0-7)
-    def __init__(self, t, x, y):
-        self.t = t
-        if t  == 0 :
-            self.position = x*16 + y
-        else :
-            self.position = x
+    #x = position in board (1x128)
+    #piezas --> position of all pieces in format (1x128)
+    def __init__(self, x, piezas):
+        self.piezas = piezas
+        self.resetMoves()
+        self.position = x
+        self.posibleMoves()
+        
+    # reset all booleans of moves to 1
+    def resetMoves(self) :
+        self.DA = 1 #Represents the down-left Diagonal: 0->obstacles 1->no obstacle
+        self.DB = 1 #Represents the down-rigth Diagonal
+        self.DC = 1 #Represents the up-left Diagonal
+        self.DD = 1 #Represents the up-rigth Diagonal
+        
+    #x --> position of the piece in format (1x128)
+    def movePiece(self, x):
+        self.position = x
+        self.resetMoves()
+        self.checkAvaliableMoves(1)
     
+    #piezas --> position of all pieces in format (1x128)
+    def setPiezas(self, piezas):
+        self.piezas = piezas
+    
+    # return positions in tablero (1x128)
     def posibleMoves(self):
         positions = []
-        p = self.position + 16
-        i = 1
-        while p < 127 :
-            positions.append(p + i)
-            positions.append(p-i)
-            p = p +16
-            i = i + 1
-        p = self.position - 16
-        i = 1
-        while p > 0 :
-            positions.append(p + i)
-            positions.append(p-i)
-            i = i + 1
-            p = p-16
-        return positions
+        x = 1
+        while x < 8 :
+            self.checkAvaliableMoves(x)
+            if self.DD and self.insideTab(self.position + (x*16) + x) :
+                positions.append(self.position + (x*16) + x)
+            if self.DC and self.insideTab(self.position + (x*16) - x) :
+                positions.append(self.position + (x*16) - x)
+            if self.DB and self.insideTab(self.position - (x*16) + x) :
+                positions.append(self.position - (x*16) + x)
+            if self.DA and self.insideTab(self.position - (x*16) - x) :
+                positions.append(self.position - (x*16) - x) 
+            x = x + 1
+        self.moves = positions
+    
+    # The function will check if the moves are avaliable with the rest of the pieces
+    def checkAvaliableMoves(self, x) :
+        if self.DD and self.position + (x*16) + x in self.piezas :
+            self.DD = 0
+        if self.DC and self.position + (x*16) - x in self.piezas :
+            self.DC = 0
+        if self.DB and self.position - (x*16) + x in self.piezas :
+            self.DB = 0
+        if self.DA and self.position - (x*16) - x in self.piezas :
+            self.DA = 0
+            
+    #Chexk if the position 'x' it's inside the Board
+    def insideTab(self, x):
+        return (x & 0x88) == 0 
