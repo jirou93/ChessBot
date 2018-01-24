@@ -7,28 +7,13 @@ Created on Wed Jan 24 10:08:43 2018
 
 class Dama:
     
-    #t = 0 --> tablero (1x128)
-    #t = 1 --> tablero (8x8)
-    #if t== 0 x = posicion
-    #else 
-    #   x--> row in the tablero (0-7)
-    #   y--> column in the tablero (0-7)
+    #x = position in board (1x128)
     #piezas --> position of all pieces in format (1x128)
-    def __init__(self, t, x ,y , piezas):
+    def __init__(self, x, piezas):
         self.piezas = piezas
-        self.DA = 1 #Represents the down-left Diagonal: 0->obstacles 1->no obstacle
-        self.DB = 1 #Represents the down-rigth Diagonal
-        self.DC = 1 #Represents the up-left Diagonal
-        self.DD = 1 #Represents the up-rigth Diagonal
-        self.VA = 1 #Represents the down Vertical
-        self.VB = 1 #Represents the up Vertical
-        self.HA = 1 #Represents the left Horitzontal
-        self.HB = 1 #Represents the rigth Horitzontal
+        self.resetMoves()
         self.moves = [] #Represents the posibles moves of the piece in that position
-        if t  == 0 :
-            self.position = x*16 + y
-        else :
-            self.position = x
+        self.position = x
     
     # reset all booleans of moves to 1
     def resetMoves(self) :

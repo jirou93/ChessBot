@@ -34,5 +34,3 @@ class Board:
             print(line)
             i = i +1
             
-tab = Board()
-tab.printBoard()
