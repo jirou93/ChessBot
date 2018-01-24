@@ -27,22 +27,21 @@ class Rey:
     def posibleMoves(self):
         positions = []
         x = 1
-        self.checkAvaliableMoves(x)
-        if !((self.position + x) in self.piezas and self.insideTab(self.position + x) : 
+        if not ((self.position + x) in self.piezas) and self.insideTab(self.position + x) : 
             positions.append(self.position + x)
-        if !((self.position + (x*16)) in self.piezas and self.insideTab(self.position + (x*16)) :
+        if not ((self.position + (x*16)) in self.piezas) and self.insideTab(self.position + (x*16)) :
             positions.append(self.position + (x*16))
-        if !((self.position + (x*16) + x) in self.piezas and self.insideTab(self.position + (x*16) + x) :
+        if not ((self.position + (x*16) + x) in self.piezas) and self.insideTab(self.position + (x*16) + x) :
             positions.append(self.position + (x*16) + x)
-        if !((self.position + (x*16) - x) in self.piezas and self.insideTab(self.position + (x*16) - x) :
+        if not ((self.position + (x*16) - x) in self.piezas) and self.insideTab(self.position + (x*16) - x) :
             positions.append(self.position + (x*16) - x)
-        if !((self.position - x) in self.piezas and self.insideTab(self.position - x) :
+        if not ((self.position - x) in self.piezas) and self.insideTab(self.position - x) :
             positions.append(self.position - x)
-        if !((self.position - (x*16)) in self.piezas and self.insideTab(self.position - (x*16)) :
+        if not ((self.position - (x*16)) in self.piezas) and self.insideTab(self.position - (x*16)) :
             positions.append(self.position - (x*16))
-        if !((self.position - (x*16) + x) in self.piezas and self.insideTab(self.position - (x*16) + x) :
+        if not ((self.position - (x*16) + x) in self.piezas) and self.insideTab(self.position - (x*16) + x) :
             positions.append(self.position - (x*16) + x)
-        if !((self.position - (x*16) - x) in self.piezas and self.insideTab(self.position - (x*16) - x) :
+        if not ((self.position - (x*16) - x) in self.piezas) and self.insideTab(self.position - (x*16) - x) :
             positions.append(self.position - (x*16) - x) 
         self.moves = positions
         
