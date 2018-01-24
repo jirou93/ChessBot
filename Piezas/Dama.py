@@ -41,6 +41,7 @@ class Dama:
         positions = []
         x = 1
         while x < 8 :
+            self.checkAvaliableMoves(x)
             if self.HB: 
                 positions.append(self.position + x)
             if self.VB:
@@ -58,7 +59,6 @@ class Dama:
             if self.DA:
                 positions.append(self.position - (x*16) - x) 
             x = x + 1
-            self.checkAvaliableMoves(x)
         self.moves = positions
     
     # The function will check if the moves are avaliable with the rest of the pieces
