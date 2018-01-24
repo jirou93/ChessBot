@@ -78,19 +78,19 @@ class Dama:
     
     # The function will check if the moves are avaliable with the rest of the pieces
     def checkAvaliableMoves(self, x) :
-        if self.HB and self.piezas.contains(self.position + x) :
+        if self.HB and self.position + x in self.piezas :
             self.HB = 0
-        if self.VB and self.piezas.contains(self.position + (x*16)) :
+        if self.VB and self.position + (x*16) in self.piezas :
             self.VB = 0
-        if self.DD and self.piezas.contains(self.position + (x*16) + x) :
+        if self.DD and self.position + (x*16) + x in self.piezas :
             self.DD = 0
-        if self.DC and self.piezas.contains(self.position + (x*16) - x) :
+        if self.DC and self.position + (x*16) - x in self.piezas :
             self.DC = 0
-        if self.HA and self.piezas.contains(self.position - x) :
+        if self.HA and self.position - x in self.piezas :
             self.HA = 0
-        if self.VB and self.piezas.contains(self.position - (x*16)) :
+        if self.VB and self.position - (x*16) in self.piezas :
             self.VB = 0
-        if self.DB:
-                positions.append(self.position - (x*16) + x)
-            if self.DA:
-                positions.append(self.position - (x*16) - x)
+        if self.DB and self.position - (x*16) + x in self.piezas :
+            self.DB = 0
+        if self.DA and self.position - (x*16) - x in self.piezas :
+            self.DA = 0
