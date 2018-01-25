@@ -9,7 +9,12 @@ import numpy as np
 
 class Board:
     
-    def __init__(self):
+    #pieces --> vector with all the position of allpieces of the game
+    #           First 16 elements will be the whithe pieces
+    #           the vector will have the next estructure:
+    #           [King,Queen,Rock,Rock,Bishop,Bishop,Horse,Horse, Pawnx8]x2
+    def __init__(self, pieces):
+        self.pieces = pieces
         self.board = self.iniBoard() #Board with all pieces
         
     #Fuction that inicialitzates the Board
